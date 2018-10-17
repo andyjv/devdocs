@@ -168,7 +168,7 @@ In `<your_module_dir>/etc/frontend/di.xml`, declare the plugin you created on th
 
 ## Step 3: Create a JS component for the checkbox {#create-jscomponent}
 
-In your custom module directory, create the following new file: `<your_module_dir>/view/frontend/web/js/single-checkbox.js`. In this file, add the following code. This is  a JS component that extends `Magento_Ui/js/form/element/single-checkbox.js`. The `onCheckedChanged` method calls the methods that update street labels, change the city and country values, and disable these fields:
+In your custom module directory, create the following new file: `<your_module_dir>/view/frontend/web/js/single-checkbox.js`. In this file, add the following code. This is a JS component that extends `Magento_Ui/js/form/element/single-checkbox.js`. The inherited `onCheckedChanged` method calls the methods that update street labels, change the city and country values, and disables those fields.
 
 ```js
 define([
@@ -228,3 +228,5 @@ define([
     });
 });
 ```
+
+The magic here is in the ```modules``` object. The properties in this object become methods on the parent that return the assigned value. We assign the value using [template literals]({{ page.baseurl }}/ui_comp_guide/concepts/ui_comp_template_literals.html). to get the parent object, and then we can access the tracked value we assigned in the layout processor.
